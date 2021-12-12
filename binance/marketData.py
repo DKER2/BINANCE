@@ -10,9 +10,9 @@ class marketData:
         self.symbol = symbol
         self.eSymbol = eSymbol
    
-    def getOrderBook(self, interval,startDate, endDate="now"):
+    def getCandlesticks(self, interval,startDate, endDate="now"):
         """
-        Get Order Book
+        Get Candles Data In An Specific Interval
         :param interval: Frequency of requesting data
         :param startDate: The start UTC+0 Human Time in type: dd/mm/yy
         :param endDate: The end Human UTC+0 Time in type: dd/mm/yy (default: now)
@@ -32,5 +32,16 @@ class marketData:
         response = requests.request("GET", url, headers=headers, data=payload)
 
         return response.text
-
+    def getRecentTrade(self):
+        """
+        :return: return new trade in text in json type
+        """
+        endPoint = END_POINT + "/api/v3/trades"
+        url = endPoint + "?symbol=" + self.symbol + self.eSymbol 
         
+        payload={}
+        headers = {}
+
+        response = requests.request("GET", url, headers=headers, data=payload)
+
+        return response.text
