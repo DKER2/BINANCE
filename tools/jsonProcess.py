@@ -27,7 +27,7 @@ def transferDataToJsonFile(data,file):
     """
     tmpText = json.loads(data)
     tmpText1 = json.dumps(tmpText,indent = 2)
-    with open("./data/"+file,'w') as fp:
+    with open("./data/"+file+".json",'w') as fp:
         fp.write(tmpText1)
 
 
@@ -36,4 +36,4 @@ def clearDataInJsonFile(file):
     """
     :param file: The name of file conveying data
     """
-    open("./data/"+file, "w").close()
+    open("./data/"+file+".json", "w").close()

@@ -8,7 +8,7 @@ END_POINT = "https://api.binance.us"
 # API_SIGN ="GKe8xqlfynUq3ALvK4r0V628knVD6V53Qo3dC9Jd5iczbeSLrVyKbMKx8eP5GCJw"
 # #TRASH API
 dataSoure = marketData("BTC","USDT")
-data = dataSoure.getOrderBook("1638353410000","1638439810000",'1m')
+data = dataSoure.getOrderBook("1m","10/12/2021")
+tools.jsonProcess.printj(data)
 tools.jsonProcess.createNewJsonDataFile("BTCUSDT")
-tools.jsonProcess.transferDataToJsonFile(data,"BTCUSDT.json")
-tools.jsonProcess.clearDataInJsonFile("BTCUSDT.json")
+tools.jsonProcess.transferDataToJsonFile(data,"BTCUSDT")
