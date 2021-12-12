@@ -1,4 +1,4 @@
-./__pycache__ 
-./binance/__pycache__
-./data/__pycache__
-./tools/__pycache__
+__pycache__ 
+binance/__pycache__
+data/__pycache__
+tools/__pycache__
