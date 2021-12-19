@@ -2,10 +2,11 @@ import requests
 import time, datetime
 END_POINT = "https://api.binance.us"
 class marketData: 
-    def __init__(self, symbol,eSymbol):
+    def __init__(self, symbol,eSymbol = "USD"):
         """ 
+        Source of Data for exchanging rate between a couple of assets(cryto and forex). If there is only one parameter, it is assumed that this will be converted to USD.
         :param symbol: The symbol of Cryto to be converted
-        :param eSymbol: The symbol of Cryto convert to
+        :param eSymbol: The symbol of Cryto convert to (default: USD)
         """
         self.symbol = symbol
         self.eSymbol = eSymbol
