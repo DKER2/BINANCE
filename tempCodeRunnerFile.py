@@ -1,0 +1,1 @@
+tools.jsonProcess.createNewJsonDataFile("SOLUSD")
