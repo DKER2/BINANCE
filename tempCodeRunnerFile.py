@@ -1,1 +1,2 @@
-tools.jsonProcess.createNewJsonDataFile("SOLUSD")
+tools.jsonProcess.createNewJsonDataFile(crypto+"USDTEST")
+# tools.jsonProcess.transferDataToJsonFile(data,crypto+"USDTEST")
