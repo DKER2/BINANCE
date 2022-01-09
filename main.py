@@ -25,10 +25,6 @@ import time,datetime
 
 
 
-
-
-
-
 crypto = "BTC"
 endDate = "03/01/2022 - 17:14:00" 
 startDate= "03/01/2022 - 12:00:00"
@@ -36,11 +32,11 @@ data_source = marketData(crypto,"USDT")
 data_source.getCandlesticks("1m",startDate,endDate)
 
 
-# while startDate<endDate:
-#     startDate = str(int(startDate) + 60000000)
-#     data = data_source.getCandlesticks("1m",startDate,endDate)
-#     tools.jsonProcess.deleteLastCharacterInJsonFile(crypto+"USD")
-#     tools.jsonProcess.transferDataToJsonFile(','+data[1:],crypto+"USD")
+while startDate<endDate:
+    startDate = str(int(startDate) + 60000000)
+    data = data_source.getCandlesticks("1m",startDate,endDate)
+    tools.jsonProcess.deleteLastCharacterInJsonFile(crypto+"USD")
+    tools.jsonProcess.transferDataToJsonFile(','+data[1:],crypto+"USD")
     
 
     

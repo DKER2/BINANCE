@@ -3,3 +3,7 @@ binance/__pycache__
 tools/__pycache__
 data
 data.zip
+__pycache__
+client_secrets.json
+tempCodeRunnerFile.py
+workspace.code-workspace.json
