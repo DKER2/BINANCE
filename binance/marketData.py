@@ -25,7 +25,7 @@ class marketData:
         """
         # tmpStartDate = str(int(time.mktime(datetime.datetime.strptime(startDate, "%d/%m/%Y - %H:%M:%S").timetuple()))*1000)
         if endDate == "now":
-            tmpEndDate = str(int(datetime.datetime.now().timestamp())*1000)
+            endDate = str(int(datetime.datetime.now().timestamp())*1000)
         # else:
         #     tmpEndDate = str(int(time.mktime(datetime.datetime.strptime(endDate, "%d/%m/%Y - %H:%M:%S").timetuple()))*1000)
         endPoint = END_POINT + "/api/v3/klines"
