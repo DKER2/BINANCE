@@ -1,6 +1,7 @@
-__pycache__ 
-binance/__pycache__
-tools/__pycache__
+__pycache__/
+binance/__pycache__/
+tools/__pycache__/
 data
-tools/__pycache__
+tools/__pycache__/
 data.zip
+tempCodeRunnerFile

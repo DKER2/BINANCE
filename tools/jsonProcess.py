@@ -69,3 +69,5 @@ def clearDataInJsonFile(file):
     """
     open("./data/"+file + ".json", "w").close()
     pass
+def deleteDataFile(file):
+    os.remove("./data/"+file+".json")

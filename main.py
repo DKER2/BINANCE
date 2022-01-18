@@ -2,10 +2,8 @@
 #
 #   TOOLS and CLASS
 from binance.marketData import marketData
-import json
-import os
 import tools.jsonProcess
-import time,datetime
+import json
 ###
 ###
 ###
@@ -15,34 +13,44 @@ import time,datetime
 
 
 
-###MATIC 2021 SUSHI 29/8/2020 ADA 10/8/2017 FTM 2021 CRV 15/08/2020 MANA 2021 VET 2020 LINK 2019 ONE 6/4/2019 DOGE 2021 AVAX 2021 HBAR 08/09/2019 ZIL 27/01/2018 GRT 04/01/2021 OMG 16/07/2017
 
 
 
+cryptos = ['ADA','ATOM','AVAX','BNB','BTC','CRV','DOGE','ETH','FTM','GRT','HBAR','LINK','MANA','MATIC','OMG','ONE','SOL','SUSHI','VET','ZIL']
+startDates = [1523937720000, 1556510400000, 1600756200000, 1509940440000, 1502942400000, 1597464000000, 1562328000000, 1502942400000, 1560225600000, 1608237000000, 1569729600000, 1547632800000, 1596708000000, 1556290800000, 1554264000000, 1559361600000, 1597125600000, 1598958000000, 1532491200000, 1550574240000]
 
 
 
+crypto = 'DOGE'
+data_soure = marketData(crypto)
+data_soure.getCandlesticks("1d","1609459200000","1640908800000")
+
+# for i in range(20):
+#     crypto = cryptos[i]
+#     print(crypto + ':')
+#     u =0
+#     with open ("./data/"+crypto+"USDT"+".json") as f: 
+#         tmp = json.loads(f.read())
+#     for i in range(len(tmp)-1):
+#         if tmp[i+1][0] - tmp[i][0] != 60000:
+#             u = u +1
+#     print(u)
+# crypto='CRV'
+# endDate = "1640765841000" 
+# startDate= "1530033660000"
+# data_source = marketData(crypto)
+
+# flag = True
+# ErrorIndex = -1
+
+# endDate = "1640765841000" 
+# startDate= str(startDates[i])
+# data_source = marketData(crypto)
+#     while startDate<endDate:
+#         tmp = json.loads(data_source.getCandlesticks("1m",startDate,endDate))
+#         tmpEndDate = tmp[len(tmp)-1][0]
+#         startDate = str(tmpEndDate +60000)
 
 
-
-
-
-
-
-crypto = "BTC"
-endDate = "03/01/2022 - 17:14:00" 
-startDate= "03/01/2022 - 12:00:00"
-data_source = marketData(crypto,"USDT")
-data_source.getCandlesticks("1m",startDate,endDate)
-
-
-# while startDate<endDate:
-#     startDate = str(int(startDate) + 60000000)
-#     data = data_source.getCandlesticks("1m",startDate,endDate)
-#     tools.jsonProcess.deleteLastCharacterInJsonFile(crypto+"USD")
-#     tools.jsonProcess.transferDataToJsonFile(','+data[1:],crypto+"USD")
-    
-
-    
 
 
