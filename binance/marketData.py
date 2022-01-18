@@ -14,20 +14,17 @@ class marketData:
         """
         self.symbol = symbol
         self.eSymbol = eSymbol
-   
-    def getCandlesticks(self, interval,startDate, endDate="now"):
+        self.dataFile = symbol + eSymbol
+    def getCandlesticksWithLimit1000(self, interval,startDate, endDate="now"):
         """
-        Get Candles Data In An Specific Interval With Limit 1000 Candle
+        Get Candles Data From API In An Specific Interval With Limit 1000 Candle
         :param interval: The interval of an candlestick ("1m","5m","1h","5h","1d","1m","1y")
         :param startDate: The start UTC+0 Human Time in type: timestamp format
         :param endDate: The end Human UTC+0 Time in type: timestamp format (default: now)
         :return: return text in json type
         """
-        # tmpStartDate = str(int(time.mktime(datetime.datetime.strptime(startDate, "%d/%m/%Y - %H:%M:%S").timetuple()))*1000)
         if endDate == "now":
             endDate = str(int(datetime.datetime.now().timestamp())*1000)
-        # else:
-        #     tmpEndDate = str(int(time.mktime(datetime.datetime.strptime(endDate, "%d/%m/%Y - %H:%M:%S").timetuple()))*1000)
         endPoint = END_POINT + "/api/v3/klines"
         url = endPoint + "?symbol=" + self.symbol + self.eSymbol + "&" +"interval=" + interval +"&startTime=" + startDate  +"&endTime=" + endDate +"&limit=1000"
         
@@ -35,14 +32,34 @@ class marketData:
         headers = {}
 
         response = requests.request("GET", url, headers=headers, data=payload)
-        if os.path.exists('./data/'+self.symbol+self.eSymbol+".json"): 
-            jsonProcess.deleteLastCharacterInJsonFile(self.symbol+self.eSymbol)
-            jsonProcess.transferDataToJsonFile(","+response.text[1:],self.symbol+self.eSymbol)
-        else:
-            jsonProcess.transferDataToJsonFile(response.text,self.symbol+self.eSymbol)
         
         return response.text
-     
+    def getCandlesticks(self,startDate, endDate="now"):
+        """
+        Get Candles Data From API In An Specific Interval
+        :param interval: The interval of an candlestick ("1m","5m","1h","5h","1d","1m","1y")
+        :param startDate: The start UTC+0 Human Time in type: timestamp format
+        :param endDate: The end Human UTC+0 Time in type: timestamp format (default: now)
+        :return: a json file
+        """
+        if endDate == "now":
+            endDate = str(int(datetime.datetime.now().timestamp())*1000)
+        while startDate<endDate:
+            responseText = self.getCandlesticksWithLimit1000("1m",startDate,endDate)
+            tmp = json.loads(responseText)
+            tmpEndDate = tmp[len(tmp)-1][0]
+            startDate = str(tmpEndDate +60000)
+            if os.path.exists('./data/'+self.symbol+self.eSymbol+".json"): 
+                jsonProcess.deleteLastCharacterInJsonFile(self.symbol+self.eSymbol)
+                jsonProcess.transferDataToJsonFile(","+responseText[1:],self.symbol+self.eSymbol)
+            else:
+                jsonProcess.transferDataToJsonFile(responseText,self.symbol+self.eSymbol)
+    
+    
+    
+    
+    
+    
     def getRecentTrade(self):
         """
         :return: return new trade in text in json type

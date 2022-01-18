@@ -21,10 +21,11 @@ startDates = [1523937720000, 1556510400000, 1600756200000, 1509940440000, 150294
 
 
 
-crypto = 'DOGE'
+crypto = 'ENJ'
 data_soure = marketData(crypto)
-data_soure.getCandlesticks("1d","1609459200000","1640908800000")
-
+with open ("./data/"+"ENJUSDT"+".json") as f: 
+    tmp = json.loads(f.read())
+    print(tmp[len(tmp)-1][0])
 # for i in range(20):
 #     crypto = cryptos[i]
 #     print(crypto + ':')
